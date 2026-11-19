@@ -19,11 +19,11 @@ class ExampleTest extends TestCase
     {
         $controller = new OperationsController;
 
-        $result = $controller->addition(4, 10);
+        $result = $controller->addition(5, 10);
 
         $this->assertIsInt($result);
         $this->assertNotNull($result);
-        $this->assertEquals(14, $result);
+        $this->assertEquals(15, $result);
         $this->assertGreaterThan(0, $result);
     }
 }
