@@ -12,3 +12,5 @@ Route::get('/generate-password', [
     OperationsController::class,
     'generate',
 ]);
+
+Route::post('/url-analysis', [URLanalyzerController::class, 'analyze']);
