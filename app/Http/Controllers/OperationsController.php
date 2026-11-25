@@ -69,7 +69,7 @@ class URLanalyzerController extends Controller
         # Llamar la funcion InspectUrl con la URL que viene en el campo y asignarla a la variable report
         $report = $this->inspectUrl($validated['url']);
 
-        # Asignar un estao HTTP segun el puntuaje del reporte, 422 no procesable y 200 para OK
+        # Asignar un estado HTTP segun el puntuaje del reporte, 422 no procesable y 200 para OK
         $status = match (true) {
             $report['score'] >= 60 => 422,
             $report['score'] >= 30 => 200,
@@ -126,11 +126,6 @@ class URLanalyzerController extends Controller
         if (count($labels) > 3) {
             $score += 20;
             $indicators[] = 'Exceso de subdominios (' . count($labels) . ')';
-        }
-        // Mide la cantidad de bytes del host, detectando si es inusual
-        if (strlen($host) > 40) {
-            $score += 10;
-            $indicators[] = 'Host inusualmente largo (' . strlen($host) . ' caracteres)';
         }
 
         // Al revisar los subdominios, se checa el dominio final y se compara a la lista Suspicious_TLDS
